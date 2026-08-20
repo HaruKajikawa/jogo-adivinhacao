@@ -7,7 +7,6 @@ public class Jogo {
 
         Random random = new Random();
         int numeroSecreto = random.nextInt(100) + 1; // Número entre 1 e 100
-
         Scanner scanner = new Scanner(System.in);
 
         int tentativasMaxima = 10;
@@ -21,13 +20,26 @@ public class Jogo {
             int palpite = scanner.nextInt();
             tentativasUsadas++;
 
+            int distancia = Math.abs(palpite - numeroSecreto);
+
             if (palpite == numeroSecreto) {
                 acertou = true;
                 System.out.println("Parabéns! Você acertou em " + tentativasUsadas + " tentativa(s)!");
-            } else if (palpite < numeroSecreto) {
-                System.out.println("O número secreto é maior.");
             } else {
-                System.out.println("O número secreto é menor.");
+                String dica = palpite < numeroSecreto ? "maior" : "menor";
+                String temperatura;
+
+                if (distancia <= 5) {
+                    temperatura = "Quentíssimo!";
+                } else if (distancia <= 15) {
+                    temperatura = "Quente.";
+                } else if (distancia <= 30) {
+                    temperatura = "Morno.";
+                } else {
+                    temperatura = "Frio.";
+                }
+
+                System.out.println("O número secreto é " + dica + ". " + temperatura);
             }
         }
 
