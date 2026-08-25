@@ -5,17 +5,30 @@ public class Jogo {
     public static void main(String[] args) {
         System.out.println("Bem-vindo ao Jogo de Adivinhação!");
 
-        Random random = new Random();
-        int numeroSecreto = random.nextInt(100) + 1; // Número entre 1 e 100
         Scanner scanner = new Scanner(System.in);
 
-        int tentativasMaxima = 10;
+        System.out.println("Escolha a dificuldade:");
+        System.out.println("1 - Fácil (15 tentativas");
+        System.out.println("2. - Médio (10 tentativas)");
+        System.out.println("3. - Díficil (5 tentativas)");
+        System.out.println("Opção: ");
+        int opcao = scanner.nextInt();
+
+        int tentativasMaximas;
+        switch(opcao){
+            case 1 -> tentativasMaximas = 15;
+            case 3 -> tentativasMaximas = 5;
+            default -> tentativasMaximas = 10;
+        }
+
+        Random random = new Random();
+        int numeroSecreto = random.nextInt(100) + 1; // Número entre 1 e 100
         int tentativasUsadas = 0;
         boolean acertou = false;
 
-        System.out.println("Pensei em um número entre 1 e 100. Você tem " + tentativasMaxima + " tentativas.");
+        System.out.println("Pensei em um número entre 1 e 100. Você tem " + tentativasMaximas + " tentativas.");
 
-        while (tentativasUsadas < tentativasMaxima && !acertou) {
+        while (tentativasUsadas < tentativasMaximas && !acertou) {
             System.out.print("Tentativa " + (tentativasUsadas + 1) + ": ");
             int palpite = scanner.nextInt();
             tentativasUsadas++;
@@ -46,7 +59,6 @@ public class Jogo {
         if (!acertou) {
             System.out.println("Suas tentativas acabaram! O número secreto era: " + numeroSecreto);
         }
-
         scanner.close();
     }
 }
