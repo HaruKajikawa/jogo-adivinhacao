@@ -36,8 +36,9 @@ public class Jogo {
             int distancia = Math.abs(palpite - numeroSecreto);
 
             if (palpite == numeroSecreto) {
+                int pontuacao = Math.max(0, (tentativasMaximas - tentativasUsadas + 1) * 15);
                 acertou = true;
-                System.out.println("Parabéns! Você acertou em " + tentativasUsadas + " tentativa(s)!");
+                System.out.println("Parabéns! Você acertou em " + tentativasUsadas + " tentativa(s)! Pontuação: " + pontuacao);
             } else {
                 String dica = palpite < numeroSecreto ? "maior" : "menor";
                 String temperatura;
